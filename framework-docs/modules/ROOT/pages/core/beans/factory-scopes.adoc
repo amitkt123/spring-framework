@@ -89,6 +89,13 @@ following example:
 	<bean id="accountService" class="com.something.DefaultAccountService" scope="singleton"/>
 ----
 
+When you use stereotype annotations such as `@Component`, `@Service`, `@Repository`, or 
+`@Controller` (or declare `@Bean` methods in a `@Configuration` class) without an explicit scope, 
+Spring registers those beans as singleton-scoped by default. That means one shared instance 
+per ApplicationContext is created and the same instance is reused across all injection points 
+and threads within that context. Because this single instance may be accessed concurrently, 
+singleton beans should be stateless or otherwise made thread-safe. 
+(Singleton here is not JVM-wide—each application context has its own singleton instance.)
 
 [[beans-factory-scopes-prototype]]
 == The Prototype Scope
